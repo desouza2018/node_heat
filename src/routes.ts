@@ -4,7 +4,7 @@ import { AuthenticateUserController } from "./controllers/AuthenticanteUserContr
 const router = Router()
 
 router.post("/authenticate", new AuthenticateUserController().handle)
-
+// usaremos o app Insomnia para testar, pois o browser só atende requisições do tipo get.
 export { router }
 
 /**

@@ -22,3 +22,7 @@ app.get("/signin/callback", (request, response) => {
 })
 
 app.listen(4000, () => console.log("Server is running on Port 4000"))
+
+// instalar a dependência: jsonwebtoken
+// yarn add jasonwebtoken
+// instalar as tipagens do jsonwebtoken: yarn add @types/jsonwebtoken -D

@@ -9,11 +9,27 @@
 //  url      = env("DATABASE_URL")
 //}
 
-datasource db { //indicado pela professora
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
+//datasource db { //indicado pela professora
+//  provider = "sqlite"
+// url      = "file:./dev.db"
+
 
 generator client {
   provider = "prisma-client-js"
 }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String @id @default(uuid())
+  name        String
+  github_id   Int
+  avatar_url  String
+  login       String  
+
+  @@map("users")//Define qual o nome que a tabela vai ter no banco de dados. Será users.
+}
+
+// yarn prisma migrate dev
