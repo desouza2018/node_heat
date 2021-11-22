@@ -1,7 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Toda configuração que tivermos, seja de banco de dados, configuração de tabelas, 
+// Toda configuração que tivermos, seja de banco de dados, configuração de tabelas,
 // iremos colocar aqui dentro do prisma.
 
 //datasource db {
@@ -13,23 +13,37 @@
 //  provider = "sqlite"
 // url      = "file:./dev.db"
 
-
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id          String @id @default(uuid())
-  name        String
-  github_id   Int
-  avatar_url  String
-  login       String  
+  id         String @id @default(uuid())
+  name       String
+  github_id  Int
+  avatar_url String
+  login      String
 
-  @@map("users")//Define qual o nome que a tabela vai ter no banco de dados. Será users.
+  @@map("users")
+  messages Message[]
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  text       String
+  created_at DateTime @default(now())
+  user_id     String
+  user       User     @relation(fields: [user_id], references: [id])
+
+  @@map("messages")
 }
 
 // yarn prisma migrate dev
+//Segunda migração:
+//prisma migrate dev -- name
+// 1:16:48 parei aqui

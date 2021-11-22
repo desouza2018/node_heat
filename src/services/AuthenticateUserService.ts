@@ -49,7 +49,7 @@ class AuthenticateUserService {
                 github_id: id
             }
         })
-// Se o usuário não existir ele será criado
+
         if (!user) {
             user = await prismaClient.user.create({
                 data: {
@@ -65,7 +65,7 @@ class AuthenticateUserService {
             {
                 user: {
                     name: user.name,
-                    avatar_url: avatar_url,
+                    avatar_url: user.avatar_url,
                     id: user.id,
                 },
             },
